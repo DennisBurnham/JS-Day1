@@ -16,5 +16,8 @@
   "devDependencies": {
     "open": "^8.2.1",
     "parcel": "^2.2.0"
+  },
+  "dependencies": {
+    "c3": "^0.7.20"
   }
 }
