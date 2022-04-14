@@ -1,12 +1,19 @@
 import c3 from "c3"
 
 
-function loadChart ( data ) {
+function loadChart ( json ) {
   // const options =   {
-    console.log(data);
+    console.log(json);
 
-  const columns = JSON.parse(data);
-  console.log(columns);
+  // const columns = JSON.parse(data);
+  // console.log(columns);
+
+const obj = JSON.parse(json);
+console.log(obj);
+
+const chartType = obj.type;
+const columns = obj.data;
+console.log(columns,chartType);
 
   //   bindto: '#chart',
   //   data: {
@@ -30,7 +37,7 @@ function loadChart ( data ) {
         console.log("onclick", element );
         FileMaker.PerformScript("Get data from charts", JSON.stringify(d));
       },
-       type: "pie",
+       type: chartType,
        columns: columns ,
        },
        pie: {
@@ -40,10 +47,14 @@ function loadChart ( data ) {
   
   // const chart = c3.generate(options)
   const piechart = c3.generate(options2 ) 
-
+  window.updateChart = function (data) {
+  const banana = JSON.parse(data);
+  console.log(banana)
+  piechart.load({columns:banana,  unload:["Merlot","Champagne"] })
 }
-
-
+}
 window.loadChart = loadChart
+
+
 
 
